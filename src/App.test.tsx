@@ -5,7 +5,7 @@ import App from './App';
 describe('renders learn react link', () => {
   it('render App', () => {
     render(<App />);
-    
-    screen.getByText(/Hello/);
-  })
+
+    expect(screen.getByText(/Hello/)).toBeInTheDocument();
+  });
 });

@@ -4,11 +4,20 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function main() {
+  const container = document.getElementById('root');
+
+  if (!container) {
+    return;
+  }
+
+  const root = ReactDOM.createRoot(container);
+
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+}
+
+main();
