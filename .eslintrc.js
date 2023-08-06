@@ -6,15 +6,19 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
   plugins: [
     'react',
+    'react-hooks',
+    '@typescript-eslint',
   ],
   settings: {
     'import/resolver': {
@@ -61,8 +65,6 @@ module.exports = {
     'react/jsx-filename-extension': [2, {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }],
-    'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'no-use-before-define': 'off',
-    'react/require-default-props': [2, { functions: 'defaultArguments' }],
   },
 };

@@ -2,7 +2,9 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import routes from './routes';
 
 function main() {
   const container = document.getElementById('root');
@@ -11,11 +13,15 @@ function main() {
     return;
   }
 
+  const router = createBrowserRouter(routes, {
+    basename: process.env.PUBLIC_URL,
+  });
+
   const root = ReactDOM.createRoot(container);
 
   root.render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </React.StrictMode>,
   );
 }
