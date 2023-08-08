@@ -23,8 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
-    "watch:test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --transformIgnorePatterns \"node_modules/(?!@codemirror)/\"",
+    "watch:test": "react-scripts test  --transformIgnorePatterns \"node_modules/(?!@codemirror)/\"",
     "eject": "react-scripts eject",
     "check": "tsc --noEmit",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
