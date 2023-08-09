@@ -6,8 +6,10 @@ import styled from 'styled-components';
 
 import useSignupFormStore from '../hooks/useSignupFormStore';
 
-import SignupForm from '../components/SignupForm';
 import ROUTES from '../constants/routes';
+import { TEST_ID_ROUTES } from '../constants/testId';
+
+import SignupForm from '../components/SignupForm';
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function SignupPage() {
 
   return (
     <Container>
-      <h2 data-testid="signup-page">
+      <h2 data-testid={TEST_ID_ROUTES.SIGNUP}>
         회원가입
       </h2>
       <SignupForm />
