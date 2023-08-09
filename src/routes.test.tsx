@@ -29,4 +29,14 @@ describe('routes', () => {
       expect(testId).toBeInTheDocument();
     });
   });
+
+  context('route 경로가 "/signin"일 때', () => {
+    it('<SigninPage /> 렌더링', () => {
+      setupRouterProvider(ROUTES.SIGNIN);
+
+      const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+
+      expect(testId).toBeInTheDocument();
+    });
+  });
 });
