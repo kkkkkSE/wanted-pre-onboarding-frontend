@@ -1,11 +1,16 @@
-export const TEST_ID_ROUTES = {
-  SIGNUP: 'signup-page',
-  SIGNIN: 'signin-page',
-  TODO: 'todo-page',
+const TEST_ID = {
+  SIGNUP: {
+    TITLE: 'signup-page',
+    EMAIL: 'email-input',
+    PASSWORD: 'password-input',
+    SUBMIT_BUTTON: 'signup-button',
+  },
+  SIGNIN: {
+    TITLE: 'signup-page',
+  },
+  TODO: {
+    TITLE: 'todo-page',
+  },
 };
 
-export const TEST_ID_SIGNUP = {
-  EMAIL: 'email-input',
-  PASSWORD: 'password-input',
-  SUBMIT_BUTTON: 'signup-button',
-};
+export default TEST_ID;
