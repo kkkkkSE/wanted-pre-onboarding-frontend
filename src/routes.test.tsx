@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 import ROUTES from './constants/routes';
-import { TEST_ID_ROUTES } from './constants/testId';
+import TEST_ID from './constants/testId';
 
 import routes from './routes';
 
@@ -24,7 +24,7 @@ describe('routes', () => {
     it('<SignupPage /> 렌더링', () => {
       setupRouterProvider(ROUTES.SIGNUP);
 
-      const testId = screen.getByTestId(TEST_ID_ROUTES.SIGNUP);
+      const testId = screen.getByTestId(TEST_ID.SIGNUP.TITLE);
 
       expect(testId).toBeInTheDocument();
     });
