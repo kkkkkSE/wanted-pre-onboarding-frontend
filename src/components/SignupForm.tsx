@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import useSignupFormStore from '../hooks/useSignupFormStore';
 
+import { TEST_ID_SIGNUP } from '../constants/testId';
+
 import TextInputBox from './ui/TextInputBox';
 import Button from './ui/Button';
 import ErrorMessage from './ui/ErrorMessage';
@@ -30,20 +32,20 @@ export default function SignupForm() {
           type="text"
           label="이메일"
           value={store.email}
-          testId="email-input"
+          testId={TEST_ID_SIGNUP.EMAIL}
           onChange={handleChangeEmail}
         />
         <TextInputBox
           type="password"
           label="비밀번호"
           value={store.password}
-          testId="password-input"
+          testId={TEST_ID_SIGNUP.PASSWORD}
           onChange={handleChangePassword}
         />
 
         <Button
           type="submit"
-          data-testid="signup-button"
+          data-testid={TEST_ID_SIGNUP.SUBMIT_BUTTON}
           disabled={!store.valid}
         >
           회원가입
