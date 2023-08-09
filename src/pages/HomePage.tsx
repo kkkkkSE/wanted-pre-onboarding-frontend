@@ -2,15 +2,17 @@ import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import PageTitle from '../components/ui/PageTitle';
+import useAccessToken from '../hooks/useAccessToken';
 
 import ROUTES from '../constants/routes';
 import TEST_ID from '../constants/testId';
 
+import PageTitle from '../components/ui/PageTitle';
+
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const accessToken = localStorage.getItem('accessToken');
+  const { accessToken } = useAccessToken();
 
   useEffect(() => {
     if (accessToken) {
