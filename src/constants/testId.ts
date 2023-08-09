@@ -1,4 +1,7 @@
 const TEST_ID = {
+  HOME: {
+    TITLE: 'home-page',
+  },
   SIGNUP: {
     TITLE: 'signup-page',
     EMAIL: 'email-input',

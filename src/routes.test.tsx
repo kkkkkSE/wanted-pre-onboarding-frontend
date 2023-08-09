@@ -19,24 +19,62 @@ const setupRouterProvider = (path: string) => {
   );
 };
 
+const mockReturnValue = {
+  aceessToken: '',
+  setAccessToken: jest.fn(),
+};
+
+jest.mock('./hooks/useAccessToken', () => () => mockReturnValue);
+
 describe('routes', () => {
-  context('route 경로가 "/signup"일 때', () => {
-    it('<SignupPage /> 렌더링', () => {
-      setupRouterProvider(ROUTES.SIGNUP);
+  describe('액세스 토큰이 없다면', () => {
+    context('route 경로가 "/"일 때', () => {
+      it('<SigninPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.HOME);
 
-      const testId = screen.getByTestId(TEST_ID.SIGNUP.TITLE);
+        const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
 
-      expect(testId).toBeInTheDocument();
+        expect(testId).toBeInTheDocument();
+      });
+    });
+
+    context('route 경로가 "/signup"일 때', () => {
+      it('<SignupPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.SIGNUP);
+
+        const testId = screen.getByTestId(TEST_ID.SIGNUP.TITLE);
+
+        expect(testId).toBeInTheDocument();
+      });
+    });
+
+    context('route 경로가 "/signin"일 때', () => {
+      it('<SigninPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.SIGNIN);
+
+        const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+
+        expect(testId).toBeInTheDocument();
+      });
     });
   });
 
-  context('route 경로가 "/signin"일 때', () => {
-    it('<SigninPage /> 렌더링', () => {
-      setupRouterProvider(ROUTES.SIGNIN);
+  describe('액세스 토큰이 있다면', () => {
+    const accessToken = 'VALIDACCESSTOKEN';
 
-      const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+    beforeEach(() => {
+      mockReturnValue.aceessToken = accessToken;
+    });
 
-      expect(testId).toBeInTheDocument();
+    // TODO: Todo page 구현 후 주석 해제
+    context('route 경로가 "/"일 때', () => {
+      it('<TodoPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.HOME);
+
+        // const testId = screen.getByTestId(TEST_ID.TODO.TITLE);
+
+        // expect(testId).toBeInTheDocument();
+      });
     });
   });
 });
