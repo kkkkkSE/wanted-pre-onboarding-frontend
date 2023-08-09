@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { styled } from 'styled-components';
 
 import useSigninFormStore from '../hooks/useSigninFormStore';
+import useAccessToken from '../hooks/useAccessToken';
 
 import TEST_ID from '../constants/testId';
 
@@ -13,9 +14,11 @@ import ErrorMessage from './ui/ErrorMessage';
 function SigninForm() {
   const store = useSigninFormStore();
 
+  const { setAccessToken } = useAccessToken();
+
   useEffect(() => {
     if (store.accessToken) {
-      localStorage.setItem('accessToken', store.accessToken);
+      setAccessToken(store.accessToken);
     }
   }, [store.accessToken]);
 
