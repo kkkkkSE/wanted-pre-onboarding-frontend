@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
-
 import useSignupFormStore from '../hooks/useSignupFormStore';
 
 import ROUTES from '../constants/routes';
 import { TEST_ID_ROUTES } from '../constants/testId';
 
+import PageTitle from '../components/ui/PageTitle';
 import SignupForm from '../components/SignupForm';
 
 export default function SignupPage() {
@@ -27,20 +26,11 @@ export default function SignupPage() {
   }, [store.done]);
 
   return (
-    <Container>
-      <h2 data-testid={TEST_ID_ROUTES.SIGNUP}>
+    <div>
+      <PageTitle data-testid={TEST_ID_ROUTES.SIGNUP}>
         회원가입
-      </h2>
+      </PageTitle>
       <SignupForm />
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  h2 {
-    font-size: 2.4rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-`;
