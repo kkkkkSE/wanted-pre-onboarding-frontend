@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import styled from 'styled-components';
+
 import useSigninFormStore from '../hooks/useSigninFormStore';
 
 import TEST_ID from '../constants/testId';
@@ -19,6 +21,10 @@ export default function SigninPage() {
     store.reset();
   }, []);
 
+  const handleClickSignup = () => {
+    navigate(ROUTES.SIGNUP);
+  };
+
   useEffect(() => {
     if (store.accessToken) {
       store.reset();
@@ -28,11 +34,30 @@ export default function SigninPage() {
   }, [store.accessToken]);
 
   return (
-    <div>
+    <Container>
       <PageTitle data-testid={TEST_ID.SIGNIN.TITLE}>
         로그인
       </PageTitle>
       <SigninForm />
-    </div>
+
+      <button
+        type="button"
+        onClick={handleClickSignup}
+      >
+        회원가입
+      </button>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > button {
+    margin-block: 2rem;
+    color: #aaa;
+    text-decoration: underline;
+  }
+`;
