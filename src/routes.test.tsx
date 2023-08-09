@@ -24,7 +24,9 @@ describe('routes', () => {
     it('<SignupPage /> 렌더링', () => {
       setupRouterProvider(ROUTES.SIGNUP);
 
-      screen.getByTestId(TEST_ID_ROUTES.SIGNUP);
+      const testId = screen.getByTestId(TEST_ID_ROUTES.SIGNUP);
+
+      expect(testId).toBeInTheDocument();
     });
   });
 });
