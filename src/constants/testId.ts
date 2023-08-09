@@ -6,7 +6,10 @@ const TEST_ID = {
     SUBMIT_BUTTON: 'signup-button',
   },
   SIGNIN: {
-    TITLE: 'signup-page',
+    TITLE: 'signin-page',
+    EMAIL: 'email-input',
+    PASSWORD: 'password-input',
+    SUBMIT_BUTTON: 'signin-button',
   },
   TODO: {
     TITLE: 'todo-page',
