@@ -2,35 +2,31 @@ import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import useSignupFormStore from '../hooks/useSignupFormStore';
+import useAccessToken from '../hooks/useAccessToken';
 
 import ROUTES from '../constants/routes';
 import TEST_ID from '../constants/testId';
 
 import PageTitle from '../components/ui/PageTitle';
-import SignupForm from '../components/SignupForm';
 
-export default function SignupPage() {
+export default function HomePage() {
   const navigate = useNavigate();
 
-  const store = useSignupFormStore();
+  const { accessToken } = useAccessToken();
 
   useEffect(() => {
-    store.reset();
-  }, []);
-
-  useEffect(() => {
-    if (store.done) {
+    if (accessToken) {
+      navigate(ROUTES.TODO);
+    } else {
       navigate(ROUTES.SIGNIN);
     }
-  }, [store.done]);
+  }, []);
 
   return (
     <div>
-      <PageTitle data-testid={TEST_ID.SIGNUP.TITLE}>
-        회원가입
+      <PageTitle data-testid={TEST_ID.HOME.TITLE}>
+        홈페이지
       </PageTitle>
-      <SignupForm />
     </div>
   );
 }
