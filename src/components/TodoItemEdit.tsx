@@ -41,9 +41,11 @@ export default function TodoItemEdit({
   };
 
   const onSubmit = () => {
-    store.updateTodo(todoItem.id, value, todoItem.isCompleted);
+    if (value) {
+      store.updateTodo(todoItem.id, value, todoItem.isCompleted);
 
-    setModifyMode(false);
+      setModifyMode(false);
+    }
   };
 
   const onCancel = () => {
@@ -65,6 +67,7 @@ export default function TodoItemEdit({
         type="button"
         onClick={onSubmit}
         data-testid={TEST_ID.TODO.SUBMIT_BUTTON}
+        disabled={!value}
       >
         제출
       </button>

@@ -108,5 +108,9 @@ const Container = styled.li`
     margin-inline: .3rem;
     color: #777;
     text-decoration: underline;
+
+    &:disabled{
+      color: #ccc;
+    }
   }
 `;
