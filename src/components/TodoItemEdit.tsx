@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import useTodoStore from '../hooks/useTodoStore';
 
@@ -16,9 +16,13 @@ export default function TodoItemEdit({
 }: TodoItemEditProps) {
   const store = useTodoStore();
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const [value, setValue] = useState('');
 
   useEffect(() => {
+    inputRef.current?.focus();
+
     setValue(todoItem.todo);
   }, []);
 
@@ -54,6 +58,7 @@ export default function TodoItemEdit({
         data-testid={TEST_ID.TODO.MODIFY_INPUT}
         onChange={handleChangeInput}
         onKeyDown={handleKeyDown}
+        ref={inputRef}
       />
 
       <button
