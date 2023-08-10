@@ -34,6 +34,8 @@ export default class TodoStore extends Store {
   addTodoItem(todoItem: TodoItem) {
     this.todoList.push(todoItem);
 
+    this.errorMessage = '';
+
     this.publish();
   }
 
@@ -42,11 +44,15 @@ export default class TodoStore extends Store {
 
     this.todoList[index] = todoItem;
 
+    this.errorMessage = '';
+
     this.publish();
   }
 
   deleteTodoItem(id: number) {
     this.todoList = this.todoList.filter((item) => item.id !== id);
+
+    this.errorMessage = '';
 
     this.publish();
   }
