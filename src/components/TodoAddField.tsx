@@ -17,7 +17,9 @@ export default function TodoAddField() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await store.createTodo(store.todo);
+    if (store.todo) {
+      await store.createTodo(store.todo);
+    }
   };
 
   return (
