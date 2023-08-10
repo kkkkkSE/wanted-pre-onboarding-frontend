@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import axios, { AxiosInstance } from 'axios';
 
 import { DYNAMIC_API_PATHS, STATIC_API_PATHS } from '../constants/api';
@@ -10,6 +11,16 @@ export default class ApiService {
   constructor() {
     this.instance = axios.create({
       baseURL: API_BASE_URL,
+    });
+
+    this.instance.interceptors.request.use((config) => {
+      const accessToken = localStorage.getItem('accessToken');
+
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
+
+      return config;
     });
   }
 
@@ -45,18 +56,18 @@ export default class ApiService {
     return data;
   }
 
-  async createTodos({ todo } : {
+  async createTodo({ todo } : {
     todo: string
   }) {
     const { data } = await this.instance.post(
-      STATIC_API_PATHS.SIGNIN,
+      STATIC_API_PATHS.TODO,
       { todo },
     );
 
     return data;
   }
 
-  async updateTodos({ id, todo, isCompleted } : {
+  async updateTodo({ id, todo, isCompleted } : {
     id: number,
     todo: string,
     isCompleted: boolean,
@@ -69,7 +80,7 @@ export default class ApiService {
     return data;
   }
 
-  async deleteTodos({ id } : {
+  async deleteTodo({ id } : {
     id: number
   }) {
     await this.instance.delete(
