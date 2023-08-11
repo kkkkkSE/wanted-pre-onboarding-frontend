@@ -32,10 +32,10 @@ describe('TodoStore', () => {
       store.resetNewTodo();
     });
 
-    context('새 할 일이 빈 문자열일 때 할 일 생성 메서드 호출 시', () => {
+    context('새 할 일을 입력하지 않고 생성 메서드를 호출하면', () => {
       const emptyTodo = '';
 
-      it('할 일 추가 API 요청을 하지 않음', async () => {
+      it('할 일 추가 API 요청을 하지 않는다', async () => {
         store.changeTodo(emptyTodo);
 
         await store.createTodo();
@@ -44,7 +44,7 @@ describe('TodoStore', () => {
       });
     });
 
-    describe('새 할 일 입력 후 할 일 생성 메서드 호출', () => {
+    describe('새 할 일 입력한 후 생성 메서드를 호출했을 때', () => {
       const newTodo = 'new todo';
 
       beforeEach(() => {
@@ -63,7 +63,7 @@ describe('TodoStore', () => {
           mockServices.createTodo.mockResolvedValue(newTodoItem);
         });
 
-        it('할 일 리스트의 마지막에 새 할 일 추가', async () => {
+        it('할 일 리스트의 마지막 요소로 새 할 일이 추가된다', async () => {
           await store.createTodo();
 
           expect(mockServices.createTodo).toBeCalledWith({ todo: newTodo });
@@ -79,7 +79,7 @@ describe('TodoStore', () => {
           mockServices.createTodo.mockRejectedValue(Error());
         });
 
-        it('"추가 실패" 메세지가 스토어의 errorMessage에 저장됨', async () => {
+        it('"추가 실패" 메세지가 스토어의 errorMessage에 저장된다', async () => {
           store.changeTodo(newTodo);
 
           await store.createTodo();
@@ -98,7 +98,7 @@ describe('TodoStore', () => {
       userId: 1,
     };
 
-    context('수정할 할 일을 입력하지 않고 할 일 수정 메서드 호출 시', () => {
+    context('수정할 할 일을 입력하지 않고 수정 메서드 호출 시', () => {
       const emptyTodo = '';
 
       it('할 일 수정 API 요청을 하지 않음', async () => {
@@ -108,7 +108,7 @@ describe('TodoStore', () => {
       });
     });
 
-    describe('수정할 할 일 입력 후 할 일 수정 메서드 호출', () => {
+    describe('수정할 할 일 입력 후 수정 메서드를 호출했을 때', () => {
       const todoList = [todoItem];
 
       const editTodo = 'edit todo';
@@ -124,7 +124,7 @@ describe('TodoStore', () => {
           });
         });
 
-        it('할 일 리스트에 해당 할 일 수정', async () => {
+        it('할 일 리스트에 해당 할 일이 수정된다', async () => {
           const index = todoList.findIndex((item) => item.id === todoItem.id);
 
           await store.updateTodo(todoItem.id, editTodo, todoItem.isCompleted);
@@ -140,7 +140,7 @@ describe('TodoStore', () => {
           mockServices.updateTodo.mockRejectedValue(Error());
         });
 
-        it('"수정 실패" 메세지가 스토어의 errorMessage에 저장됨', async () => {
+        it('"수정 실패" 메세지가 스토어의 errorMessage에 저장된다', async () => {
           await store.updateTodo(todoItem.id, editTodo, todoItem.isCompleted);
 
           expect(store.errorMessage).toBe('수정 실패');
@@ -164,7 +164,7 @@ describe('TodoStore', () => {
     });
 
     context('할 일 삭제 API 호출 시 요청 성공 응답을 받으면', () => {
-      it('할 일 리스트에 해당 할 일 삭제', async () => {
+      it('할 일 리스트에 해당 할 일이 삭제된다', async () => {
         await store.deleteTodo(todoItem.id);
 
         expect(mockServices.deleteTodo).toBeCalled();
@@ -180,7 +180,7 @@ describe('TodoStore', () => {
         mockServices.deleteTodo.mockRejectedValue(Error());
       });
 
-      it('"삭제 실패" 메세지가 스토어의 errorMessage에 저장됨', async () => {
+      it('"삭제 실패" 메세지가 스토어의 errorMessage에 저장된다', async () => {
         await store.deleteTodo(todoItem.id);
 
         expect(store.errorMessage).toBe('삭제 실패');

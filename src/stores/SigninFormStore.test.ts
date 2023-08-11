@@ -26,12 +26,12 @@ describe('SigninFormStore', () => {
       store.reset();
     });
 
-    context('이메일을 입력하지 않았거나, "@" 기호가 빠져있다면', () => {
+    context('이메일을 입력하지 않았거나, 유효하지 않은 이메일 입력 시', () => {
       beforeEach(() => {
         store.changePassword('password');
       });
 
-      it('유효성 검사 불통과', () => {
+      it('유효성 검사를 통과하지 못한다', () => {
         store.changeEmail('');
 
         expect(store.valid).toBe(false);
@@ -42,12 +42,12 @@ describe('SigninFormStore', () => {
       });
     });
 
-    context('비밀번호를 입력하지 않았거나, 8자 미만으로 입력했다면', () => {
+    context('비밀번호를 입력하지 않았거나, 유효하지 않은 비밀번호 입력 시', () => {
       beforeEach(() => {
         store.changeEmail('email@example.com');
       });
 
-      it('유효성 검사 불통과', () => {
+      it('유효성 검사를 통과하지 못한다', () => {
         store.changePassword('');
 
         expect(store.valid).toBe(false);
@@ -68,7 +68,7 @@ describe('SigninFormStore', () => {
         mockSignin.mockResolvedValue(accessToken);
       });
 
-      it('스토어 내 accessToken에 토큰이 저장됨', async () => {
+      it('스토어 내 accessToken에 토큰이 저장된다', async () => {
         await store.signin();
 
         expect(mockSignin).toBeCalled();
@@ -88,7 +88,7 @@ describe('SigninFormStore', () => {
         mockSignin.mockRejectedValue(Error(errorMessage));
       });
 
-      it('에러 메세지가 스토어의 errorMessage에 저장됨', async () => {
+      it('에러 메세지가 스토어의 errorMessage에 저장된다', async () => {
         await store.signin();
 
         expect(mockSignin).toBeCalled();
