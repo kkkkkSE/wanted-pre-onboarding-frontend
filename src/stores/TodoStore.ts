@@ -108,7 +108,7 @@ export default class TodoStore extends Store {
 
       this.deleteTodoItem(id);
     } catch (e) {
-      this.setErrorMessage('추가 실패');
+      this.setErrorMessage('삭제 실패');
     }
   }
 }
