@@ -17,7 +17,7 @@ npm start
 
 ## 데모
 
-- 배포 : https://pre-onboarding-kkkkkse.netlify.app/todo
+- 배포 : https://pre-onboarding-kkkkkse.netlify.app
 
 ## 디렉토리 구조
 
