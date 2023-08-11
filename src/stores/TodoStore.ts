@@ -75,10 +75,12 @@ export default class TodoStore extends Store {
 
   async createTodo() {
     try {
-      const todoItem = await apiService.createTodo({ todo: this.newTodo });
+      if (this.newTodo) {
+        const todoItem = await apiService.createTodo({ todo: this.newTodo });
 
-      this.addTodoItem(todoItem);
-      this.resetNewTodo();
+        this.addTodoItem(todoItem);
+        this.resetNewTodo();
+      }
     } catch (e) {
       this.setErrorMessage('추가 실패');
     }
@@ -90,9 +92,11 @@ export default class TodoStore extends Store {
     isCompleted: boolean,
   ) {
     try {
-      const todoItem = await apiService.updateTodo({ id, todo, isCompleted });
+      if (todo) {
+        const todoItem = await apiService.updateTodo({ id, todo, isCompleted });
 
-      this.updateTodoItem(todoItem);
+        this.updateTodoItem(todoItem);
+      }
     } catch (e) {
       this.setErrorMessage('수정 실패');
     }
