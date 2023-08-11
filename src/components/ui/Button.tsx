@@ -5,7 +5,7 @@ const Button = styled.button`
   padding: 1rem 2.8rem;
   width: fit-content;
   color: #ffffff;
-  background-color: #3fc493;
+  background-color: #7C73C0;
   border-radius: .4rem;
 
   &:disabled {
