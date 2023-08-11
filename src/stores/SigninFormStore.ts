@@ -28,6 +28,7 @@ export default class SigninFormStore extends Store {
   reset() {
     this.email = '';
     this.password = '';
+    this.accessToken = '';
     this.errorMessage = '';
 
     this.publish();
