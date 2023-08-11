@@ -6,8 +6,13 @@ const useAccessToken = () => {
   );
 
   const updateAccessToken = (newAccessToken: string) => {
-    setAccessToken(newAccessToken);
-    localStorage.setItem('accessToken', newAccessToken);
+    try {
+      localStorage.setItem('accessToken', newAccessToken);
+
+      setAccessToken(newAccessToken);
+    } catch (e) {
+      setAccessToken('');
+    }
   };
 
   return {
