@@ -3,14 +3,12 @@ import axios, { AxiosInstance } from 'axios';
 
 import { DYNAMIC_API_PATHS, STATIC_API_PATHS } from '../constants/api';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
-
 export default class ApiService {
   private instance : AxiosInstance;
 
   constructor() {
     this.instance = axios.create({
-      baseURL: API_BASE_URL,
+      baseURL: 'https://www.pre-onboarding-selection-task.shop',
     });
 
     this.instance.interceptors.request.use((config) => {
