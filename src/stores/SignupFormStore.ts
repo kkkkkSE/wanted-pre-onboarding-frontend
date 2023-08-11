@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { apiService } from '../services/apiService';
+import { apiService } from '../services/ApiService';
 
 import Store from './Store';
 

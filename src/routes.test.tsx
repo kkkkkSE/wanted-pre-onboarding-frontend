@@ -32,9 +32,9 @@ describe('routes', () => {
       it('<SigninPage /> 렌더링', () => {
         setupRouterProvider(ROUTES.HOME);
 
-        const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+        const title = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
 
-        expect(testId).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
       });
     });
 
@@ -42,9 +42,9 @@ describe('routes', () => {
       it('<SignupPage /> 렌더링', () => {
         setupRouterProvider(ROUTES.SIGNUP);
 
-        const testId = screen.getByTestId(TEST_ID.SIGNUP.TITLE);
+        const title = screen.getByTestId(TEST_ID.SIGNUP.TITLE);
 
-        expect(testId).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
       });
     });
 
@@ -52,9 +52,9 @@ describe('routes', () => {
       it('<SigninPage /> 렌더링', () => {
         setupRouterProvider(ROUTES.SIGNIN);
 
-        const testId = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+        const title = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
 
-        expect(testId).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
       });
     });
   });

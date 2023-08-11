@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 
-interface TextInputBoxProps {
+interface InputBoxProps {
   type: string,
-  label: string,
+  label?: string,
   value: string,
   testId: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function TextInputBox({
-  type, label, value, testId, onChange,
-}: TextInputBoxProps) {
+export default function InputBox({
+  type, label = '', value, testId, onChange,
+}: InputBoxProps) {
   return (
     <Container>
-      <label htmlFor={testId}>{label}</label>
+      {label && <span>{label}</span>}
       <input
         type={type}
-        id={testId}
         value={value}
         data-testid={testId}
         onChange={onChange}
@@ -25,12 +24,12 @@ export default function TextInputBox({
   );
 }
 
-const Container = styled.div`
+const Container = styled.label`
   display: flex;
   align-items: center;
   padding-block: .8rem;
 
-  label {
+  span {
     display: inline-block;
     width: 10rem;
     white-space: pre-wrap;

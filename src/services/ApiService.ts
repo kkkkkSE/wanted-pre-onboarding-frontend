@@ -43,9 +43,7 @@ export default class ApiService {
       { email, password },
     );
 
-    const accessToken = data.access_token;
-
-    return accessToken;
+    return data.access_token;
   }
 
   async getTodos() {

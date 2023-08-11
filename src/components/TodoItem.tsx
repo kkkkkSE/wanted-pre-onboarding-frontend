@@ -91,6 +91,7 @@ const Container = styled.li`
 
   span{
     display: inline-block;
+    word-break: break-all;
   }
 
   input[type='text']{
@@ -108,6 +109,7 @@ const Container = styled.li`
     margin-inline: .3rem;
     color: #777;
     text-decoration: underline;
+    white-space: nowrap;
 
     &:disabled{
       color: #ccc;

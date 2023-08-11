@@ -23,25 +23,21 @@ export default function TodoList() {
 
   return (
     <Container>
-      <ul>
-        {store.todoList.map((todoItem) => (
-          <TodoItem
-            key={todoItem.id}
-            todoItem={todoItem}
-          />
-        ))}
-      </ul>
+      {store.todoList.map((todoItem) => (
+        <TodoItem
+          key={todoItem.id}
+          todoItem={todoItem}
+        />
+      ))}
     </Container>
   );
 }
 
-const Container = styled.div`
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
+const Container = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 
   > p {
     padding-block: 3rem;

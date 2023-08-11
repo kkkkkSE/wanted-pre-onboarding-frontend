@@ -4,7 +4,7 @@ import useTodoStore from '../hooks/useTodoStore';
 
 import TEST_ID from '../constants/testId';
 
-import TextInputBox from './ui/TextInputBox';
+import InputBox from './ui/InputBox';
 import Button from './ui/Button';
 
 export default function TodoAddField() {
@@ -23,38 +23,33 @@ export default function TodoAddField() {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <TextInputBox
-          label="할 일 추가"
-          type="text"
-          value={store.newTodo}
-          testId={TEST_ID.TODO.ADD_INPUT}
-          onChange={handleChangeInput}
-        />
-        <Button
-          type="submit"
-          data-testid={TEST_ID.TODO.ADD_BUTTON}
-          disabled={!store.newTodo}
-        >
-          추가
-        </Button>
-      </form>
+    <Container onSubmit={handleSubmit}>
+      <InputBox
+        label="할 일 추가"
+        type="text"
+        value={store.newTodo}
+        testId={TEST_ID.TODO.ADD_INPUT}
+        onChange={handleChangeInput}
+      />
+      <Button
+        type="submit"
+        data-testid={TEST_ID.TODO.ADD_BUTTON}
+        disabled={!store.newTodo}
+      >
+        추가
+      </Button>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.form`
   padding-block: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    button{
-      margin-left: 1rem;
-      white-space: nowrap;
-    }
+  button{
+    margin-left: 1rem;
+    white-space: nowrap;
   }
 `;
