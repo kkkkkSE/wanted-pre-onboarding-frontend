@@ -33,7 +33,6 @@ export default function TodoAddField() {
   return (
     <Container onSubmit={handleSubmit}>
       <InputBox
-        label="할 일 추가"
         type="text"
         value={store.newTodo}
         testId={TEST_ID.TODO.ADD_INPUT}
