@@ -74,7 +74,11 @@ export default class SigninFormStore extends Store {
       this.setAccessToken(accessToken);
     } catch (e) {
       if (e instanceof AxiosError) {
-        this.setErrorMessage(e.response?.data.message || 'ERROR');
+        if (e.response?.status === 401) {
+          this.setErrorMessage('아이디나 비밀번호가 맞지 않습니다');
+        } else {
+          this.setErrorMessage(e.response?.data.message || 'ERROR');
+        }
 
         return;
       }
