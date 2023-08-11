@@ -6,10 +6,11 @@ interface InputBoxProps {
   value: string,
   testId: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export default function InputBox({
-  type, label = '', value, testId, onChange,
+  type, label = '', value, testId, onChange, onBlur = undefined,
 }: InputBoxProps) {
   return (
     <Container>
@@ -19,6 +20,7 @@ export default function InputBox({
         value={value}
         data-testid={testId}
         onChange={onChange}
+        onBlur={onBlur}
       />
     </Container>
   );
@@ -27,16 +29,17 @@ export default function InputBox({
 const Container = styled.label`
   display: flex;
   align-items: center;
-  padding-block: .8rem;
+  padding-block: .4rem;
 
   span {
     display: inline-block;
-    width: 10rem;
+    width: 7rem;
     white-space: pre-wrap;
+    padding-right: 1rem;
   }
 
   input {
     width: 28rem;
-    padding: .8rem 1rem;
+    padding: 1rem 1.2rem;
   }
 `;

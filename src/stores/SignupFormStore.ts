@@ -17,10 +17,12 @@ export default class SignupFormStore extends Store {
 
   done = false;
 
-  get valid() {
-    return (
-      this.email.includes(AT_SIGN) && this.password.length >= PASSWORD_MIN_LENGTH
-    );
+  get validEmail() {
+    return this.email.includes(AT_SIGN);
+  }
+
+  get validPassword() {
+    return this.password.length >= PASSWORD_MIN_LENGTH;
   }
 
   reset() {
