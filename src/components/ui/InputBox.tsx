@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import styled from 'styled-components';
 
 interface InputBoxProps {
@@ -9,22 +11,30 @@ interface InputBoxProps {
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export default function InputBox({
-  type, label = '', value, testId, onChange, onBlur = undefined,
-}: InputBoxProps) {
-  return (
-    <Container>
-      {label && <span>{label}</span>}
-      <input
-        type={type}
-        value={value}
-        data-testid={testId}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-    </Container>
-  );
-}
+const InputBox = forwardRef<HTMLInputElement, InputBoxProps>(({
+  type, label, value, testId, onChange, onBlur,
+}, ref) => (
+  <Container>
+    {label && <span>{label}</span>}
+    <input
+      type={type}
+      value={value}
+      data-testid={testId}
+      onChange={onChange}
+      onBlur={onBlur}
+      ref={ref}
+    />
+  </Container>
+));
+
+InputBox.displayName = 'InputBox';
+
+InputBox.defaultProps = {
+  label: '',
+  onBlur: undefined,
+};
+
+export default InputBox;
 
 const Container = styled.label`
   display: flex;

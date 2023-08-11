@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import styled from 'styled-components';
 
 import useTodoStore from '../hooks/useTodoStore';
@@ -9,6 +11,12 @@ import Button from './ui/Button';
 
 export default function TodoAddField() {
   const store = useTodoStore();
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     store.changeTodo(event.target.value);
@@ -25,11 +33,11 @@ export default function TodoAddField() {
   return (
     <Container onSubmit={handleSubmit}>
       <InputBox
-        label="할 일 추가"
         type="text"
         value={store.newTodo}
         testId={TEST_ID.TODO.ADD_INPUT}
         onChange={handleChangeInput}
+        ref={inputRef}
       />
       <Button
         type="submit"
