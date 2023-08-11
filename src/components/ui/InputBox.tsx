@@ -51,5 +51,7 @@ const Container = styled.label`
   input {
     width: 28rem;
     padding: 1rem 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: .2rem;
   }
 `;
