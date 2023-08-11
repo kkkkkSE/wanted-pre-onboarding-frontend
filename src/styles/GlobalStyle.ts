@@ -29,6 +29,16 @@ const GlobalStyle = createGlobalStyle`
       cursor: not-allowed;
     }
   }
+
+  input {
+    &:focus {
+      outline-color: #7C73C0;
+    }
+
+    &[type="checkbox"]:checked {
+      accent-color: #7C73C0;
+    }
+  }
 `;
 
 export default GlobalStyle;

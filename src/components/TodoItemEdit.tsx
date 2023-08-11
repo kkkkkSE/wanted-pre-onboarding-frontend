@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect, useRef, useState } from 'react';
 
 import useTodoStore from '../hooks/useTodoStore';
 
@@ -16,11 +17,23 @@ export default function TodoItemEdit({
 }: TodoItemEditProps) {
   const store = useTodoStore();
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [value, setValue] = useState('');
 
   useEffect(() => {
+    inputRef.current?.focus();
+
     setValue(todoItem.todo);
   }, []);
+
+  const handleChangeCheckbox = () => {
+    store.updateTodo(
+      todoItem.id,
+      todoItem.todo,
+      !todoItem.isCompleted,
+    );
+  };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -37,9 +50,11 @@ export default function TodoItemEdit({
   };
 
   const onSubmit = () => {
-    store.updateTodo(todoItem.id, value, todoItem.isCompleted);
+    if (value) {
+      store.updateTodo(todoItem.id, value, todoItem.isCompleted);
 
-    setModifyMode(false);
+      setModifyMode(false);
+    }
   };
 
   const onCancel = () => {
@@ -49,17 +64,25 @@ export default function TodoItemEdit({
   return (
     <>
       <input
+        type="checkbox"
+        checked={todoItem.isCompleted}
+        onChange={handleChangeCheckbox}
+      />
+
+      <input
         type="text"
         value={value}
         data-testid={TEST_ID.TODO.MODIFY_INPUT}
         onChange={handleChangeInput}
         onKeyDown={handleKeyDown}
+        ref={inputRef}
       />
 
       <button
         type="button"
         onClick={onSubmit}
         data-testid={TEST_ID.TODO.SUBMIT_BUTTON}
+        disabled={!value}
       >
         제출
       </button>

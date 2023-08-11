@@ -11,7 +11,7 @@ import ROUTES from '../constants/routes';
 export default function PostSigninLayout() {
   const navigate = useNavigate();
 
-  const { accessToken } = useAccessToken();
+  const { accessToken, setAccessToken } = useAccessToken();
 
   useEffect(() => {
     if (!accessToken) {
@@ -19,13 +19,40 @@ export default function PostSigninLayout() {
     }
   }, [accessToken]);
 
+  const handleClickLogout = () => {
+    setAccessToken('');
+  };
+
   return (
     <Container>
       <Outlet />
+
+      <footer>
+        <button
+          type="button"
+          onClick={handleClickLogout}
+        >
+          로그아웃
+        </button>
+      </footer>
     </Container>
   );
 }
 
 const Container = styled.div`
+
   padding: 6rem 2rem 2rem;
+
+  footer{
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+
+    button{
+      margin-inline: .3rem;
+      color: #777;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+  }
 `;

@@ -2,15 +2,20 @@ import { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import useAccessToken from '../hooks/useAccessToken';
 import useTodoStore from '../hooks/useTodoStore';
 
 import TodoItem from './TodoItem';
 
 export default function TodoList() {
+  const { accessToken } = useAccessToken();
+
   const store = useTodoStore();
 
   useEffect(() => {
-    store.fetchTodoList();
+    if (accessToken) {
+      store.fetchTodoList();
+    }
   }, []);
 
   if (store.todoList.length === 0) {
@@ -23,25 +28,21 @@ export default function TodoList() {
 
   return (
     <Container>
-      <ul>
-        {store.todoList.map((todoItem) => (
-          <TodoItem
-            key={todoItem.id}
-            todoItem={todoItem}
-          />
-        ))}
-      </ul>
+      {store.todoList.map((todoItem) => (
+        <TodoItem
+          key={todoItem.id}
+          todoItem={todoItem}
+        />
+      ))}
     </Container>
   );
 }
 
-const Container = styled.div`
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
+const Container = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 
   > p {
     padding-block: 3rem;

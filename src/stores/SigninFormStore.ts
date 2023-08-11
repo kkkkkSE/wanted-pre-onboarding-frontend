@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { apiService } from '../services/apiService';
+import { apiService } from '../services/ApiService';
 
 import Store from './Store';
 
@@ -17,15 +17,18 @@ export default class SigninFormStore extends Store {
 
   errorMessage = '';
 
-  get valid() {
-    return (
-      this.email.includes(AT_SIGN) && this.password.length >= PASSWORD_MIN_LENGTH
-    );
+  get validEmail() {
+    return this.email.includes(AT_SIGN);
+  }
+
+  get validPassword() {
+    return this.password.length >= PASSWORD_MIN_LENGTH;
   }
 
   reset() {
     this.email = '';
     this.password = '';
+    this.accessToken = '';
     this.errorMessage = '';
 
     this.publish();
@@ -71,7 +74,11 @@ export default class SigninFormStore extends Store {
       this.setAccessToken(accessToken);
     } catch (e) {
       if (e instanceof AxiosError) {
-        this.setErrorMessage(e.response?.data.message || 'ERROR');
+        if (e.response?.status === 401) {
+          this.setErrorMessage('아이디나 비밀번호가 맞지 않습니다');
+        } else {
+          this.setErrorMessage(e.response?.data.message || 'ERROR');
+        }
 
         return;
       }

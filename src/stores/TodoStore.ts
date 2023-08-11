@@ -1,24 +1,24 @@
-import { apiService } from '../services/apiService';
+import { apiService } from '../services/ApiService';
 
 import { TodoItem } from '../types';
 
 import Store from './Store';
 
 export default class TodoStore extends Store {
-  todo = '';
+  newTodo = '';
 
   todoList: TodoItem[] = [];
 
   errorMessage = '';
 
   changeTodo(todo: string) {
-    this.todo = todo;
+    this.newTodo = todo;
 
     this.publish();
   }
 
-  resetTodo() {
-    this.todo = '';
+  resetNewTodo() {
+    this.newTodo = '';
 
     this.publish();
   }
@@ -34,6 +34,8 @@ export default class TodoStore extends Store {
   addTodoItem(todoItem: TodoItem) {
     this.todoList.push(todoItem);
 
+    this.errorMessage = '';
+
     this.publish();
   }
 
@@ -42,11 +44,15 @@ export default class TodoStore extends Store {
 
     this.todoList[index] = todoItem;
 
+    this.errorMessage = '';
+
     this.publish();
   }
 
   deleteTodoItem(id: number) {
     this.todoList = this.todoList.filter((item) => item.id !== id);
+
+    this.errorMessage = '';
 
     this.publish();
   }
@@ -67,12 +73,14 @@ export default class TodoStore extends Store {
     }
   }
 
-  async createTodo(todo : string) {
+  async createTodo() {
     try {
-      const todoItem = await apiService.createTodo({ todo });
+      if (this.newTodo) {
+        const todoItem = await apiService.createTodo({ todo: this.newTodo });
 
-      this.addTodoItem(todoItem);
-      this.resetTodo();
+        this.addTodoItem(todoItem);
+        this.resetNewTodo();
+      }
     } catch (e) {
       this.setErrorMessage('추가 실패');
     }
@@ -84,9 +92,11 @@ export default class TodoStore extends Store {
     isCompleted: boolean,
   ) {
     try {
-      const todoItem = await apiService.updateTodo({ id, todo, isCompleted });
+      if (todo) {
+        const todoItem = await apiService.updateTodo({ id, todo, isCompleted });
 
-      this.updateTodoItem(todoItem);
+        this.updateTodoItem(todoItem);
+      }
     } catch (e) {
       this.setErrorMessage('수정 실패');
     }
@@ -98,7 +108,7 @@ export default class TodoStore extends Store {
 
       this.deleteTodoItem(id);
     } catch (e) {
-      this.setErrorMessage('추가 실패');
+      this.setErrorMessage('삭제 실패');
     }
   }
 }
