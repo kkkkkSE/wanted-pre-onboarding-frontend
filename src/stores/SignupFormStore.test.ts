@@ -4,7 +4,7 @@ const context = describe;
 
 const mockSignup = jest.fn();
 
-jest.mock('../services/apiService', () => ({
+jest.mock('../services/ApiService', () => ({
   get apiService() {
     return {
       signup: mockSignup,

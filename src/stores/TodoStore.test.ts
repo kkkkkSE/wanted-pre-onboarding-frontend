@@ -8,7 +8,7 @@ const mockServices = {
   deleteTodo: jest.fn(),
 };
 
-jest.mock('../services/apiService', () => ({
+jest.mock('../services/ApiService', () => ({
   get apiService() {
     return {
       createTodo: mockServices.createTodo,
