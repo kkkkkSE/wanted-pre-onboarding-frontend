@@ -17,8 +17,8 @@ export default function TodoAddField() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (store.todo) {
-      await store.createTodo(store.todo);
+    if (store.newTodo) {
+      await store.createTodo();
     }
   };
 
@@ -28,14 +28,14 @@ export default function TodoAddField() {
         <TextInputBox
           label="할 일 추가"
           type="text"
-          value={store.todo}
+          value={store.newTodo}
           testId={TEST_ID.TODO.ADD_INPUT}
           onChange={handleChangeInput}
         />
         <Button
           type="submit"
           data-testid={TEST_ID.TODO.ADD_BUTTON}
-          disabled={!store.todo}
+          disabled={!store.newTodo}
         >
           추가
         </Button>

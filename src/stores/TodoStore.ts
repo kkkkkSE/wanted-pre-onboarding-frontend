@@ -5,20 +5,20 @@ import { TodoItem } from '../types';
 import Store from './Store';
 
 export default class TodoStore extends Store {
-  todo = '';
+  newTodo = '';
 
   todoList: TodoItem[] = [];
 
   errorMessage = '';
 
   changeTodo(todo: string) {
-    this.todo = todo;
+    this.newTodo = todo;
 
     this.publish();
   }
 
-  resetTodo() {
-    this.todo = '';
+  resetNewTodo() {
+    this.newTodo = '';
 
     this.publish();
   }
@@ -73,12 +73,12 @@ export default class TodoStore extends Store {
     }
   }
 
-  async createTodo(todo : string) {
+  async createTodo() {
     try {
-      const todoItem = await apiService.createTodo({ todo });
+      const todoItem = await apiService.createTodo({ todo: this.newTodo });
 
       this.addTodoItem(todoItem);
-      this.resetTodo();
+      this.resetNewTodo();
     } catch (e) {
       this.setErrorMessage('추가 실패');
     }
