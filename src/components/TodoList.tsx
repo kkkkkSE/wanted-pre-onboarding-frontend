@@ -2,15 +2,20 @@ import { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import useAccessToken from '../hooks/useAccessToken';
 import useTodoStore from '../hooks/useTodoStore';
 
 import TodoItem from './TodoItem';
 
 export default function TodoList() {
+  const { accessToken } = useAccessToken();
+
   const store = useTodoStore();
 
   useEffect(() => {
-    store.fetchTodoList();
+    if (accessToken) {
+      store.fetchTodoList();
+    }
   }, []);
 
   if (store.todoList.length === 0) {
