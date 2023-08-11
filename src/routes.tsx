@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 import TodoPage from './pages/TodoPage';
+import NotFound from './components/NotFound';
 
 const routes = [
   {
@@ -24,6 +25,9 @@ const routes = [
     children: [
       { path: ROUTES.TODO, element: <TodoPage /> },
     ],
+  },
+  {
+    path: '/*', element: <NotFound />,
   },
 ];
 
