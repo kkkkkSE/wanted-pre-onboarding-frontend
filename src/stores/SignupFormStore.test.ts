@@ -31,14 +31,14 @@ describe('SignupFormStore', () => {
         store.changePassword('password');
       });
 
-      it('유효성 검사를 통과하지 못한다', () => {
+      it('이메일 유효성 검사를 통과하지 못한다', () => {
         store.changeEmail('');
 
-        expect(store.valid).toBe(false);
+        expect(store.validEmail).toBe(false);
 
         store.changeEmail('example');
 
-        expect(store.valid).toBe(false);
+        expect(store.validEmail).toBe(false);
       });
     });
 
@@ -47,14 +47,14 @@ describe('SignupFormStore', () => {
         store.changeEmail('email@example.com');
       });
 
-      it('유효성 검사를 통과하지 못한다', () => {
+      it('비밀번호 유효성 검사를 통과하지 못한다', () => {
         store.changePassword('');
 
-        expect(store.valid).toBe(false);
+        expect(store.validPassword).toBe(false);
 
         store.changePassword('1234567');
 
-        expect(store.valid).toBe(false);
+        expect(store.validPassword).toBe(false);
       });
     });
 
