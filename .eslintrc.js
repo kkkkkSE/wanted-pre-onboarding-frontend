@@ -66,5 +66,6 @@ module.exports = {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }],
     'no-use-before-define': 'off',
+    'react/require-default-props': [2, { functions: 'defaultArguments' }],
   },
 };
