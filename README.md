@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# wanted-pre-onboarding-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 지원 정보 
 
-## Available Scripts
+- 지원 분야 : 원티드 프리온보딩 프론트엔드 인턴십
+- 이름 : 김상은
 
-In the project directory, you can run:
+## 프로젝트 실행 방법
 
-### `npm start`
+`git clone` 후 아래 커맨드 입력
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+npm start
+```
 
-### `npm test`
+## 데모
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 배포 : https://pre-onboarding-kkkkkse.netlify.app/todo
 
-### `npm run build`
+## 디렉토리 구조
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+├── README.md
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── public/
+├── src/
+│   ├── components/
+│   │   └── ui/
+│   ├── constants/
+│   ├── hooks/
+│   ├── pages/
+│   ├── services/
+│   ├── stores/
+│   ├── styles/
+│   ├── types/
+│   ├── index.tsx
+│   ├── react-app-env.d.ts
+│   ├── routes.test.tsx
+│   ├── routes.tsx
+│   └── setupTests.ts
+└── tsconfig.json
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `src` 구조
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `components` : 프로젝트의 재사용 가능한 컴포넌트를 관리
+  - `ui` : UI 컴포넌트를 관리(상태, 비즈니스 로직 포함하지 않음)
+- `constants` : 프로젝트에서 사용되는 상수 정의 파일 관리
+- `hooks` : 커스텀 훅 관리
+- `pages` : 페이지 컴포넌트 관리
+- `services` : Axios를 이용한 API 호출 관리
+- `stores` : 전역 상태 관리를 위한 스토어 관리
+- `styles` : 전역 스타일 관리
+- `types` : 타입 정의 파일 관리
