@@ -16,7 +16,7 @@ export default function TodoItemEdit({
 }: TodoItemEditProps) {
   const store = useTodoStore();
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [value, setValue] = useState('');
 
