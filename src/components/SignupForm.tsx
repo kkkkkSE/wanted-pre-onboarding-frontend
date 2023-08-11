@@ -4,7 +4,7 @@ import useSignupFormStore from '../hooks/useSignupFormStore';
 
 import TEST_ID from '../constants/testId';
 
-import TextInputBox from './ui/TextInputBox';
+import InputBox from './ui/InputBox';
 import Button from './ui/Button';
 import ErrorMessage from './ui/ErrorMessage';
 
@@ -28,14 +28,14 @@ export default function SignupForm() {
   return (
     <Container>
       <form onSubmit={handleSubmitSignup}>
-        <TextInputBox
+        <InputBox
           type="text"
           label="이메일"
           value={store.email}
           testId={TEST_ID.SIGNUP.EMAIL}
           onChange={handleChangeEmail}
         />
-        <TextInputBox
+        <InputBox
           type="password"
           label="비밀번호"
           value={store.password}

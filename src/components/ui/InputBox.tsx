@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface TextInputBoxProps {
+interface InputBoxProps {
   type: string,
   label?: string,
   value: string,
@@ -8,9 +8,9 @@ interface TextInputBoxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function TextInputBox({
+export default function InputBox({
   type, label = '', value, testId, onChange,
-}: TextInputBoxProps) {
+}: InputBoxProps) {
   return (
     <Container>
       {label && <span>{label}</span>}

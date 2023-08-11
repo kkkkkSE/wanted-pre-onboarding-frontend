@@ -4,7 +4,7 @@ import useTodoStore from '../hooks/useTodoStore';
 
 import TEST_ID from '../constants/testId';
 
-import TextInputBox from './ui/TextInputBox';
+import InputBox from './ui/InputBox';
 import Button from './ui/Button';
 
 export default function TodoAddField() {
@@ -24,7 +24,7 @@ export default function TodoAddField() {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <TextInputBox
+      <InputBox
         label="할 일 추가"
         type="text"
         value={store.newTodo}
