@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 
 import styled from 'styled-components';
@@ -37,15 +38,16 @@ export default function TodoItem({ todoItem } : TodoItemProps) {
 
   return (
     <Container>
-      <input
-        type="checkbox"
-        checked={todoItem.isCompleted}
-        onChange={handleChangeCheckbox}
-      />
-
       {!modifyMode ? (
         <>
-          <span>{todoItem.todo}</span>
+          <label>
+            <input
+              type="checkbox"
+              checked={todoItem.isCompleted}
+              onChange={handleChangeCheckbox}
+            />
+            <span>{todoItem.todo}</span>
+          </label>
 
           <button
             type="button"
@@ -83,14 +85,14 @@ const Container = styled.li`
   padding: 1.2rem 1rem;
   box-shadow: .2rem .2rem .8rem rgba(0, 0, 0, 0.15);
 
-  >:nth-child(2) {
+  label {
     flex-grow: 1;
-    margin-inline: .8rem;
-  }
-
-  span{
-    display: inline-block;
-    word-break: break-all;
+    
+    span{
+      margin-inline: .8rem;
+      display: inline-block;
+      word-break: break-all;
+    }
   }
 
   input[type='text']{
@@ -101,6 +103,11 @@ const Container = styled.li`
 
     &:focus{
       outline: none;
+    }
+
+    &:nth-of-type(2) {
+      margin-inline: .8rem;
+      flex-grow: 1;
     }
   }
 

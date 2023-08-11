@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useRef, useState } from 'react';
 
 import useTodoStore from '../hooks/useTodoStore';
@@ -25,6 +26,14 @@ export default function TodoItemEdit({
 
     setValue(todoItem.todo);
   }, []);
+
+  const handleChangeCheckbox = () => {
+    store.updateTodo(
+      todoItem.id,
+      todoItem.todo,
+      !todoItem.isCompleted,
+    );
+  };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -54,6 +63,12 @@ export default function TodoItemEdit({
 
   return (
     <>
+      <input
+        type="checkbox"
+        checked={todoItem.isCompleted}
+        onChange={handleChangeCheckbox}
+      />
+
       <input
         type="text"
         value={value}
