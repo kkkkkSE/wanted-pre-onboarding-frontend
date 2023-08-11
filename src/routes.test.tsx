@@ -20,7 +20,7 @@ const setupRouterProvider = (path: string) => {
 };
 
 const mockReturnValue = {
-  aceessToken: '',
+  accessToken: '',
   setAccessToken: jest.fn(),
 };
 
@@ -57,24 +57,73 @@ describe('routes', () => {
         expect(title).toBeInTheDocument();
       });
     });
+
+    context('route 경로가 "/todo"일 때', () => {
+      it('<SigninPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.TODO);
+
+        const title = screen.getByTestId(TEST_ID.SIGNIN.TITLE);
+
+        expect(title).toBeInTheDocument();
+      });
+    });
   });
 
   describe('액세스 토큰이 있다면', () => {
     const accessToken = 'VALIDACCESSTOKEN';
 
     beforeEach(() => {
-      mockReturnValue.aceessToken = accessToken;
+      mockReturnValue.accessToken = accessToken;
     });
 
-    // TODO: Todo page 구현 후 주석 해제
     context('route 경로가 "/"일 때', () => {
       it('<TodoPage /> 렌더링', () => {
         setupRouterProvider(ROUTES.HOME);
 
-        // const testId = screen.getByTestId(TEST_ID.TODO.TITLE);
+        const testId = screen.getByTestId(TEST_ID.TODO.TITLE);
 
-        // expect(testId).toBeInTheDocument();
+        expect(testId).toBeInTheDocument();
       });
+    });
+
+    context('route 경로가 "/signup"일 때', () => {
+      it('<TodoPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.SIGNUP);
+
+        const title = screen.getByTestId(TEST_ID.TODO.TITLE);
+
+        expect(title).toBeInTheDocument();
+      });
+    });
+
+    context('route 경로가 "/signin"일 때', () => {
+      it('<TodoPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.SIGNIN);
+
+        const title = screen.getByTestId(TEST_ID.TODO.TITLE);
+
+        expect(title).toBeInTheDocument();
+      });
+    });
+
+    context('route 경로가 "/todo"일 때', () => {
+      it('<TodoPage /> 렌더링', () => {
+        setupRouterProvider(ROUTES.TODO);
+
+        const title = screen.getByTestId(TEST_ID.TODO.TITLE);
+
+        expect(title).toBeInTheDocument();
+      });
+    });
+  });
+
+  context('유효하지 않은 경로로 접근했을 때', () => {
+    it('<NotFound /> 렌더링', () => {
+      setupRouterProvider('/invalid-path');
+
+      const text = screen.getByText(/404 Error/);
+
+      expect(text).toBeInTheDocument();
     });
   });
 });
