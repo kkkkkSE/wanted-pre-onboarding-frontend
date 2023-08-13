@@ -73,6 +73,7 @@ export default function TodoItemEdit({
         type="text"
         value={value}
         data-testid={TEST_ID.TODO.MODIFY_INPUT}
+        name={TEST_ID.TODO.MODIFY_INPUT}
         onChange={handleChangeInput}
         onKeyDown={handleKeyDown}
         ref={inputRef}
@@ -82,6 +83,7 @@ export default function TodoItemEdit({
         type="button"
         onClick={onSubmit}
         data-testid={TEST_ID.TODO.SUBMIT_BUTTON}
+        name={TEST_ID.TODO.SUBMIT_BUTTON}
         disabled={!value}
       >
         제출
@@ -91,6 +93,7 @@ export default function TodoItemEdit({
         type="button"
         onClick={onCancel}
         data-testid={TEST_ID.TODO.CANCEL_BUTTON}
+        name={TEST_ID.TODO.CANCEL_BUTTON}
       >
         취소
       </button>

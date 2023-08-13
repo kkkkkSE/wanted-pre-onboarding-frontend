@@ -20,6 +20,7 @@ const InputBox = forwardRef<HTMLInputElement, InputBoxProps>(({
       type={type}
       value={value}
       data-testid={testId}
+      name={testId}
       onChange={onChange}
       onBlur={onBlur}
       ref={ref}

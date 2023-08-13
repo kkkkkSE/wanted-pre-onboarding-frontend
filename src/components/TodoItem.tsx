@@ -53,6 +53,7 @@ export default function TodoItem({ todoItem } : TodoItemProps) {
             type="button"
             onClick={handleClickModify}
             data-testid={TEST_ID.TODO.MODIFY_BUTTON}
+            name={TEST_ID.TODO.MODIFY_BUTTON}
           >
             수정
           </button>
@@ -61,6 +62,7 @@ export default function TodoItem({ todoItem } : TodoItemProps) {
             type="button"
             onClick={handleClickDelete}
             data-testid={TEST_ID.TODO.DELETE_BUTTON}
+            name={TEST_ID.TODO.DELETE_BUTTON}
           >
             삭제
           </button>

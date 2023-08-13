@@ -93,6 +93,7 @@ function SigninForm() {
         <Button
           type="submit"
           data-testid={TEST_ID.SIGNIN.SUBMIT_BUTTON}
+          name={TEST_ID.SIGNIN.SUBMIT_BUTTON}
           disabled={!store.validEmail || !store.validPassword}
         >
           로그인

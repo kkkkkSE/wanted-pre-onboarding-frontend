@@ -84,6 +84,7 @@ export default function SignupForm() {
         <Button
           type="submit"
           data-testid={TEST_ID.SIGNUP.SUBMIT_BUTTON}
+          name={TEST_ID.SIGNUP.SUBMIT_BUTTON}
           disabled={!store.validEmail || !store.validPassword}
         >
           회원가입

@@ -42,6 +42,7 @@ export default function TodoAddField() {
       <Button
         type="submit"
         data-testid={TEST_ID.TODO.ADD_BUTTON}
+        name={TEST_ID.TODO.ADD_BUTTON}
         disabled={!store.newTodo}
       >
         추가
